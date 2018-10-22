@@ -5,6 +5,7 @@ $("#junk_button").click(function(){
 });
 
 $("#myAge").html("\<span\>Age\<\/span\>" + getMyAge());
+
 });
 
 
