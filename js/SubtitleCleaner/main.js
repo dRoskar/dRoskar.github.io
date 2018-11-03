@@ -43,7 +43,7 @@ function fileLoaded(e) {
 
     //display preview
     $("#preview").html(highlightedSubs);
-    $("#preview").removeAttr('hidden');
+    $("#preview-div").removeAttr('hidden');
 
     var url = URL.createObjectURL(blob);
     $("#download-link").removeAttr('hidden');
