@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#file-upload").change(readFile)
 });
 
-var fileName = "subtitle.srt";
+var fileName = "subtitles.srt";
 var fileType = "application/x-subrip;charset=utf-8";
 
 
