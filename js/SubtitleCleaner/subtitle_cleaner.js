@@ -7,7 +7,9 @@ var subtitleCleaner = function() {
         },
 
         highlightSubtitle: function(subtitleString) {
-            return subtitleString;
+            return '<font color="red">'
+            + subtitleString
+            + '</font>';
         }
     }
 }();

@@ -33,13 +33,17 @@ function readFile(e) {
 
 function fileLoaded(e) {
     // clean
-    var cleanedString = subtitleCleaner.cleanSubtitle(e.target.result);
-    var highlightedSubtitle = subtitleCleaner.highlightSubtitle(e.target.result);
+    var cleanedSubs = subtitleCleaner.cleanSubtitle(e.target.result);
+    var highlightedSubs = subtitleCleaner.highlightSubtitle(e.target.result);
 
     // create blob
-    var blob = new Blob([cleanedString], {
+    var blob = new Blob([cleanedSubs], {
         type: "application/x-subrip;charset=utf-8"
     });
+
+    //display preview
+    $("#preview").html(highlightedSubs);
+    $("#preview").removeAttr('hidden');
 
     var url = URL.createObjectURL(blob);
     $("#download-link").removeAttr('hidden');

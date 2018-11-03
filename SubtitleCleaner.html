@@ -24,9 +24,7 @@
 </head>
 
 <body>
-<h1 id="header"></h1>
-
-<canvas id="cvs" width="480" height="320"></canvas>
+<h1>SubtitleCleaner</h1>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/jquery.hotkeys.js"></script>
@@ -37,8 +35,10 @@
 
 <input type="file" id="file-upload" />
 
-<!-- <button id="download" type="button">Download</button> -->
-
 <a hidden id="download-link">Download</a>
+
+<div>
+	<p class="prewrapped container-fluid col-xl-7 offset-xl-2 text-center" id="preview" rows="500" cols="100" hidden></p>
+</div>
 
 </html>
