@@ -1,10 +1,9 @@
-$(document).ready(function() {
-    $("#file-upload").change(readFile)
-});
-
 var fileName = "subtitles.srt";
 var fileType = "application/x-subrip;charset=utf-8";
 
+$(document).ready(function() {
+    $("#file-upload").change(readFile)
+});
 
 function readFile(e) {
     var file = e.target.files[0];
@@ -33,10 +32,12 @@ function readFile(e) {
 }
 
 function fileLoaded(e) {
-    var fileString = e.target.result;
+    // clean
+    var cleanedString = subtitleCleaner.cleanSubtitle(e.target.result);
+    var highlightedSubtitle = subtitleCleaner.highlightSubtitle(e.target.result);
 
     // create blob
-    var blob = new Blob([fileString], {
+    var blob = new Blob([cleanedString], {
         type: "application/x-subrip;charset=utf-8"
     });
 
