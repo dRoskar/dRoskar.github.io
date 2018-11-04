@@ -22,7 +22,6 @@ function readFile(e) {
 
     if(fileName.endsWith(".txt")) {
         fileType = "text/plain;charset=utf-8";
-        console.log(fileType);
     }
 
     reader.readAsText(file)
