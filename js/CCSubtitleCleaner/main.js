@@ -3,6 +3,12 @@ var fileType = "application/x-subrip;charset=utf-8";
 
 $(document).ready(function() {
     $("#file-upload").change(readFile)
+
+    $('#file-input-button').click(function(){
+        $('#file-upload').click();
+    });
+
+    $("#image-slider").twentytwenty();
 });
 
 function readFile(e) {
@@ -37,17 +43,27 @@ function fileLoaded(e) {
 
     // create blob
     var blob = new Blob([cleanedSubs], {
-        type: "application/x-subrip;charset=utf-8"
+        type: fileType
     });
 
     //display preview
     $("#preview").html(highlightedSubs);
-    $("#preview-div").removeAttr('hidden');
+    if($("#preview-div").is(":hidden")){
+        $("#preview-div").slideToggle(600);
+    }
 
     var url = URL.createObjectURL(blob);
-    $("#download-link").removeAttr('hidden');
     $("#download-link").attr("download", fileName);
     $("#download-link").attr("href", url);
+
+    if($("#file-download-button").hasClass("disabled")) {
+        $("#file-download-button").removeClass("disabled")
+        $("#file-download-button").click(function() {
+            if(!$("#file-download-button").hasClass("disabled")) {
+                document.getElementById("download-link").click();
+            }
+        });
+    }
 }
 
 function errorHandler(evt) {

@@ -1,3 +1,30 @@
 .prewrapped {
     white-space: pre-wrap;
+    background: #f9f9f9;
+    font-size: 14px;
+    color: #40424a;
+}
+
+.mpad {
+	padding-top: 30px;
+	padding-bottom: 45px;
+}
+
+.ugly-file-input {
+    visibility: hidden;
+    height: 0px;
+}
+
+.center-div {
+    text-align: center;
+}
+
+button.site-btn.disabled {
+	background-color: #f2f2f2;
+	border: 2px solid #9295a0;
+	color: #9295a0;
+}
+
+.section-title.wtext h2{
+	margin-bottom: 40px;
 }
