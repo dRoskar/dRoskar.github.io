@@ -28,3 +28,11 @@ button.site-btn.disabled {
 .section-title.wtext h2{
 	margin-bottom: 40px;
 }
+
+#drop-box.drag-over {
+    background: #d9d9d9;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #b3b3b3;
+    opacity: 0.5;
+}

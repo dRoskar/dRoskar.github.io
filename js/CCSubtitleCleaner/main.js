@@ -1,18 +1,27 @@
 var fileName = "subtitles.srt";
 var fileType = "application/x-subrip;charset=utf-8";
 
-$(document).ready(function() {
-    $("#file-upload").change(readFile)
+$(document).ready(function () {
+    $("#file-upload").change(getFile)
 
-    $('#file-input-button').click(function(){
+    $('#file-input-button').click(function () {
         $('#file-upload').click();
     });
 
     $("#image-slider").twentytwenty();
+
+    $("#drop-box").get(0).ondrop = dragAndDropHandler.handleDrop;
+    $("#drop-zone").get(0).ondragover = dragAndDropHandler.handleDragOver;
+
+    dragAndDropHandler.fileProcessor = readFile;
 });
 
-function readFile(e) {
-    var file = e.target.files[0];
+function getFile(event) {
+    var file = event.target.files[0];
+    readFile(file);
+}
+
+function readFile(file) {
     var reader = new FileReader();
 
     if (!file) {
@@ -21,12 +30,12 @@ function readFile(e) {
 
     fileName = file.name;
 
-    if(!file.name.endsWith(".srt") && !file.name.endsWith(".txt")){
+    if (!file.name.endsWith(".srt") && !file.name.endsWith(".txt")) {
         console.error("Invalid file type!");
         return;
     }
 
-    if(fileName.endsWith(".txt")) {
+    if (fileName.endsWith(".txt")) {
         fileType = "text/plain;charset=utf-8";
     }
 
@@ -36,10 +45,10 @@ function readFile(e) {
     reader.onload = fileLoaded;
 }
 
-function fileLoaded(e) {
+function fileLoaded(event) {
     // clean
-    var cleanedSubs = subtitleCleaner.cleanSubtitle(e.target.result);
-    var highlightedSubs = subtitleCleaner.highlightSubtitle(e.target.result);
+    var cleanedSubs = subtitleCleaner.cleanSubtitle(event.target.result);
+    var highlightedSubs = subtitleCleaner.highlightSubtitle(event.target.result);
 
     // create blob
     var blob = new Blob([cleanedSubs], {
@@ -48,7 +57,7 @@ function fileLoaded(e) {
 
     //display preview
     $("#preview").html(highlightedSubs);
-    if($("#preview-div").is(":hidden")){
+    if ($("#preview-div").is(":hidden")) {
         $("#preview-div").slideToggle(600);
     }
 
@@ -56,18 +65,18 @@ function fileLoaded(e) {
     $("#download-link").attr("download", fileName);
     $("#download-link").attr("href", url);
 
-    if($("#file-download-button").hasClass("disabled")) {
+    if ($("#file-download-button").hasClass("disabled")) {
         $("#file-download-button").removeClass("disabled")
-        $("#file-download-button").click(function() {
-            if(!$("#file-download-button").hasClass("disabled")) {
+        $("#file-download-button").click(function () {
+            if (!$("#file-download-button").hasClass("disabled")) {
                 document.getElementById("download-link").click();
             }
         });
     }
 }
 
-function errorHandler(evt) {
-    if(evt.target.error.name == "NotReadableError") {
-      console.error("The file could not be read");
+function errorHandler(event) {
+    if (event.target.error.name == "NotReadableError") {
+        console.error("The file could not be read");
     }
-  }
+}

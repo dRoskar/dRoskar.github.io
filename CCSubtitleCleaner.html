@@ -46,12 +46,14 @@
 	<!-- Header section end -->
 
 	<!-- Functionality section start -->
-	<section class="hero-section mpad">
+	<section id="drop-zone" class="hero-section mpad" >
 		<div class="container-fluid">
-			<div class="row mpad">
-				<div class="col-xl-10 offset-xl-1 center-div">
-					<button id="file-input-button" class="site-btn">Select Subtitle File</button>
-					<button id="file-download-button" class="site-btn disabled">Download Cleaned File</button>
+			<div class="row">
+				<div id="drop-box" class="col-xl-6 offset-xl-3 center-div">
+					<div class="mpad">
+						<button id="file-input-button" class="site-btn">Select Subtitle File</button>
+						<button id="file-download-button" class="site-btn disabled">Download Cleaned File</button>
+					</div>
 				</div>
 			</div>
 			<div class ="row">
@@ -111,6 +113,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="js/CCSubtitleCleaner/twentytwenty/jquery.event.move.js"></script>
 	<script src="js/CCSubtitleCleaner/twentytwenty/jquery.twentytwenty.js"></script>
+	<script src="js/CCSubtitleCleaner/drag_and_drop.js"></script>
 	<script src="js/CCSubtitleCleaner/subtitle_cleaner.js"></script>
 	<script src="js/CCSubtitleCleaner/main.js"></script>
 </body>
