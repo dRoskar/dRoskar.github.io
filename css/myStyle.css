@@ -36,3 +36,14 @@ button.site-btn.disabled {
     border-color: #b3b3b3;
     opacity: 0.5;
 }
+
+.links a{
+    color: #b9b9b9;
+    -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+
+.links a:hover{
+    color: #484848;
+}
