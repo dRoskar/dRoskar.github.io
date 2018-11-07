@@ -11,8 +11,6 @@
 
 
 $(window).on('load', function () {
-	console.log("Referer: " + document.referrer);
-
 	/*------------------
 		Preloder
 	--------------------*/
