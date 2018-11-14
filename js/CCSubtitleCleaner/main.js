@@ -1,7 +1,7 @@
 var fileName = "subtitles.srt";
 var fileType = "application/x-subrip;charset=utf-8";
 
-$(document).ready(function () {
+$(window).on("load", function () {
     $("#file-upload").change(getFile)
 
     $('#file-input-button').click(function () {
