@@ -47,3 +47,25 @@ button.site-btn.disabled {
 .links a:hover{
     color: #484848;
 }
+
+.project-item h2 {
+	font-size: 24px;
+	margin-bottom: 5px;
+}
+
+.project-item p {
+	font-size: 14px;
+	margin-bottom: 0;
+}
+
+.project-item .proj-pic {
+    position: absolute;
+    margin-bottom: 30px;
+	display: block;
+	height: 480px;
+	background: #333;
+	background-position: center center;
+	background-size: cover;
+	overflow: hidden;
+    position: relative;
+}
