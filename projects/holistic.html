@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="../css/magnific-popup.css" />
 	<link rel="stylesheet" href="../css/style.css" />
 	<link rel="stylesheet" href="../css/myStyle.css" />
+	<link rel="stylesheet" href="../css/smartphoto.min.css" />
 
 
 	<!--[if lt IE 9]>
@@ -50,6 +51,30 @@
 	</header>
 	<!-- Header section end -->
 
+	
+	<!-- GALLERY start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="image-list">
+					<a href="../img/portfolio/holistic/holistic banner.png" class="js-smartPhoto" data-caption="Player Overview" data-id="one"/>
+						<img src="../img/portfolio/holistic/holistic banner.png" />
+					</a>
+					<a href="../img/portfolio/holistic/holistic1.jpg" class="js-smartPhoto" data-caption="Raning Ladder" data-id="two"/>
+						<img src="../img/portfolio/holistic/holistic1.jpg" />
+					</a>
+					<a href="../img/portfolio/holistic/holistic2.jpg" class="js-smartPhoto" data-caption="Raning Ladder" data-id="two"/>
+						<img src="../img/portfolio/holistic/holistic2.jpg" />
+					</a>
+					<a href="../img/portfolio/holistic/holistic3.jpg" class="js-smartPhoto" data-caption="Raning Ladder" data-id="two"/>
+						<img src="../img/portfolio/holistic/holistic3.jpg" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- GALLERY end -->
+
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="../js/jquery-2.1.4.min.js"></script>
@@ -59,6 +84,13 @@
 	<script src="../js/circle-progress.min.js"></script>
 	<script src="../js/main.js"></script>
 	<script src="../js/scripts.js"></script>
+	<script src="../js/smartphoto.min.js"></script>
+
+	<script>
+		window.addEventListener('DOMContentLoaded',function(){
+			new SmartPhoto(".js-smartPhoto");
+		});
+	</script>
 </body>
 
 </html>

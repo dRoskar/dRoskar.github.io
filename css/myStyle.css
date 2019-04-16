@@ -69,3 +69,13 @@ button.site-btn.disabled {
 	overflow: hidden;
     position: relative;
 }
+
+.js-smartPhoto img {
+    height: 250px;
+    width: auto;
+}
+
+.image-list {
+    overflow-x: auto;
+    white-space: nowrap;
+}
