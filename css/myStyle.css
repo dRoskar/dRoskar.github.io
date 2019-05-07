@@ -10,6 +10,11 @@
 	padding-bottom: 45px;
 }
 
+.opad {
+	padding-top: 0px;
+	padding-bottom: 45px;
+}
+
 .ugly-file-input {
     visibility: hidden;
     height: 0px;
@@ -78,4 +83,20 @@ button.site-btn.disabled {
 .image-list {
     overflow-x: auto;
     white-space: nowrap;
+}
+
+.image-list a{
+    margin-right: 10px;
+}
+
+ul {
+	font-size: 18px;
+	color: #808181;
+    line-height: 1.8;
+    margin-left: 32px;
+    margin-top: 16px;
+}
+
+.bottom-room {
+    margin-bottom: 32px;
 }
