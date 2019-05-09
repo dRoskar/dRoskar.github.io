@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Apartment Value Calculator</title>
+	<meta charset="utf-8"/>
+
+</head>
+
+<body>
+	Location:
+	<select id="locationSelect">
+		<option value="shit">shit</option>
+		<option value="ok">ok</option>
+		<option value="good">good</option>
+		<option value="great">great</option>
+	  </select>
+	<br />
+	<br />
+	Musicallity:
+	<select id="musicSelect">
+		<option value="shit">shit</option>
+		<option value="ok">ok</option>
+		<option value="good">good</option>
+	  </select>
+	<br />
+	<br />
+	Bike safety:
+	<select id="bikeSelect">
+		<option value="shit">shit</option>
+		<option value="ok">ok</option>
+		<option value="good">good</option>
+	  </select>
+	<br />
+	<br />
+	<input type="checkbox" id="checkboxFridge">Fridge space<br>
+	<br />
+	<input type="checkbox" id="checkboxProjector">Projector space<br>
+	<br />
+	<input type="checkbox" id="checkboxBathtub">Bathtub<br>
+	<br />
+	<br />
+	<button onclick="calculate()">Calculate</button>
+	<br />
+	<br />
+	<b>Score: <span id="score"></span></b>
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+
+	<script>
+		function calculate() {
+			var loc = $('#locationSelect').val();
+			var music = $('#checkboxProjector').val();
+			var bike = $('#checkboxBathtub').val();
+
+			var score = 205;
+			if($('#checkboxFridge').prop("checked")){
+				score = score + 25;
+			} else {
+				score = score - 25;
+			}
+
+			if($('#checkboxProjector').prop("checked")){
+				score = score + 50;
+			} else {
+				score = score - 50;
+			}
+
+			if($('#checkboxBathtub').prop("checked")){
+				score = score + 20;
+			} else {
+				score = score - 20;
+			}
+
+			switch(loc) {
+				case "shit":
+					score = score - 110;
+					break;
+				case "ok":
+					score = score + 0;
+					break;
+				case "good":
+					score = score + 90;
+					break;
+				case "great":
+					score = score + 180;
+					break;
+				default:
+					score = score + 0;
+			}
+
+			switch(music) {
+				case "shit":
+					score = score - 40;
+					break;
+				case "ok":
+					score = score + 0;
+					break;
+				case "good":
+					score = score + 40;
+					break;
+				default:
+					score = score + 0;
+			}
+
+			switch(bike) {
+				case "shit":
+					score = score - 90;
+					break;
+				case "ok":
+					score = score + 30;
+					break;
+				case "good":
+					score = score + 40;
+					break;
+				default:
+					score = score + 0;
+			}
+
+
+			document.getElementById("score").innerHTML = score;
+		}
+	</script>
+</body>
+
+</html>
