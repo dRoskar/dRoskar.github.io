@@ -1,3 +1,13 @@
+$(window).on('load', function () {
+	/*------------------
+		Preloder
+	--------------------*/
+	$(".loader").fadeOut();
+	$("#preloder").delay(400).fadeOut("slow");
+});
+
+
+
 var graceHead = new Image();
 var graceBody = new Image();
 var whisker = new Image();
