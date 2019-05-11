@@ -1,69 +1,151 @@
 var graceHead = new Image();
 var graceBody = new Image();
 var whisker = new Image();
-var clock1 = new Image();
-var clock2 = new Image();
+var engraving = new Image();
+var clock = new Image();
+var initialBodyScale = 0.32;
+var initialHeadScale = 0.42;
+var initialWhiskerScale = 0.74;
+var initialEngravingScale = 0.5;
+var scale;
+
+var engravingVersion = 3;
+var clockVersion = 1;
 
 function init() {
     graceHead.src = "../img/grace/grace_h_cajgar.png"
     graceBody.src = "../img/grace/grace_body.png"
     whisker.src = "../img/grace/whisker.png"
-    clock1.src = "../img/grace/clock1.png"
-    clock2.src = "../img/grace/clock2.png"
+    engraving.src = "../img/grace/engraving5.png"
+    clock.src = "../img/grace/clock5.png"
     window.requestAnimationFrame(draw);
 }
 
 function draw() {
+    var ctx = document.getElementById('canvas').getContext('2d');
+    document.getElementById('canvas').addEventListener("wheel", wheelz);
+
     var now = new Date();
     var sec = now.getSeconds();
     var min = now.getMinutes();
     var hr  = now.getHours();
     hr = hr >= 12 ? hr - 12 : hr;
 
-    var ctx = document.getElementById('canvas').getContext('2d');
-
     ctx.canvas.width  = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
+
+    // ---- SCALING ---------------------
+
+    // initial scale
+    graceBody.scaledWidth = graceBody.width * initialBodyScale;
+    graceBody.scaledHeight = graceBody.height * initialBodyScale;
+    graceHead.scaledWidth = graceHead.width * initialHeadScale;
+    graceHead.scaledHeight = graceHead.height * initialHeadScale;
+    whisker.scaledWidth = whisker.width * initialWhiskerScale;
+    whisker.scaledHeight = whisker.height * initialWhiskerScale;
+    engraving.scaledHeight = engraving.height * initialEngravingScale;
+    engraving.scaledWidth = engraving.width * initialEngravingScale;
+
+    // scale
+    if(ctx.canvas.width <= ctx.canvas.height) {
+        scale = ctx.canvas.width/clock.width;
+    } else {
+        scale = ctx.canvas.height/clock.height;
+    }
+
+    clock.scaledWidth = clock.width * scale;
+    clock.scaledHeight = clock.height * scale;
+
+    graceBody.scaledWidth = graceBody.scaledWidth * scale;
+    graceBody.scaledHeight = graceBody.scaledHeight * scale;
+    graceHead.scaledWidth = graceHead.scaledWidth * scale;
+    graceHead.scaledHeight = graceHead.scaledHeight * scale;
+    whisker.scaledWidth = whisker.scaledWidth * scale;
+    whisker.scaledHeight = whisker.scaledHeight * scale;
+    engraving.scaledHeight = engraving.scaledHeight * scale;
+    engraving.scaledWidth = engraving.scaledWidth * scale;
+
+    // ---- DRAWING -----------------------
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     
     //bakground color
     ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    ctx.fillStyle = "#d6f5f5";
+    ctx.fillStyle = "#ffe6e6";
     ctx.fill();
-
-    // ctx.rotate(-Math.PI / 2);
 
     // move to the center of the canvas
     ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2);
 
-    ctx.drawImage(clock1, -clock1.width/2, -clock1.height/2);
-    // ctx.drawImage(clock2, -clock2.width/2, -clock2.height/2);
+    // clock face
+    ctx.drawImage(clock,
+        -clock.scaledWidth/2,
+        -clock.scaledHeight/2,
+        clock.scaledWidth,
+        clock.scaledHeight);
 
-    // ctx.rotate(-Math.PI / 2)
+    // engraving
+    ctx.drawImage(engraving,
+        -engraving.scaledWidth/2,
+        -engraving.scaledHeight/2 - 380*initialEngravingScale*scale,
+        engraving.scaledWidth,
+        engraving.scaledHeight);    
 
     // minutes - body
     ctx.save();
     ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);
-    ctx.drawImage(graceBody, -graceBody.width/2 + 100, -graceBody.height/2 - 580);
+    ctx.drawImage(graceBody,
+        -graceBody.scaledWidth/2 + 100*initialBodyScale*scale,
+        -graceBody.scaledHeight/2 - 580*initialBodyScale*scale,
+        graceBody.scaledWidth,
+        graceBody.scaledHeight);
     ctx.restore();
 
     // hours - head
     ctx.rotate(hr * (Math.PI / 6) + (Math.PI / 360) * min + (Math.PI / 21600) *sec);
     ctx.lineWidth = 14;
-    ctx.drawImage(graceHead, -graceHead.width/2 - 110, -graceHead.height/2 - 70);
+    ctx.drawImage(graceHead,
+        -graceHead.scaledWidth/2 - 110*initialHeadScale*scale,
+        -graceHead.scaledHeight/2 - 70*initialHeadScale*scale,
+        graceHead.scaledWidth,
+        graceHead.scaledHeight);
      
     // Write seconds
-    ctx.translate(175, 50);
+    ctx.translate(175*initialHeadScale*scale, 50*initialHeadScale*scale);
     ctx.rotate(sec * Math.PI / 30);
-    ctx.drawImage(whisker, -whisker.width/2, -whisker.height + 5);
-
-    // ctx.beginPath();
-    // ctx.arc(0, 0, 10, 0, 2 * Math.PI);
-    // ctx.fillStyle = "red";
-    // ctx.fill();
+    ctx.drawImage(whisker,
+        -whisker.scaledWidth/2,
+        -whisker.scaledHeight + 5*initialWhiskerScale*scale,
+        whisker.scaledWidth,
+        whisker.scaledHeight);
 
     window.requestAnimationFrame(draw);
+}
+
+function wheelz(e){
+
+    if(e.shiftKey) {
+        if(e.deltaY > 0) {
+            engravingVersion--
+            engravingVersion = engravingVersion <= 2 ? 3 : engravingVersion;
+        } else {
+            engravingVersion++;
+            engravingVersion = engravingVersion >= 7 ? 6 : engravingVersion;
+        }
+
+        engraving.src = "../img/grace/engraving" + engravingVersion + ".png"
+
+    } else {
+        if(e.deltaY > 0) {
+            clockVersion--
+            clockVersion = clockVersion <= 0 ? 1 : clockVersion;
+        } else {
+            clockVersion++;
+            clockVersion = clockVersion >= 6 ? 5 : clockVersion;
+        }
+
+        clock.src = "../img/grace/clock" + clockVersion + ".png"
+    }
 }
 
 init();
