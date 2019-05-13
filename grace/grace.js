@@ -19,8 +19,8 @@ var scale;
 var clocks = [new Image(), new Image(), new Image(), new Image(), new Image()];
 var engravings = [new Image(), new Image(), new Image(), new Image()];
 
-var engravingVersion = 2;
-var clockVersion = 4;
+var engravingVersion = 1;
+var clockVersion = 0;
 
 function init() {
     graceHead.src = "../img/grace/grace_h_cajgar.png"
