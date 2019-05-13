@@ -6,28 +6,38 @@ $(window).on('load', function () {
 	$("#preloder").delay(400).fadeOut("slow");
 });
 
-
-
 var graceHead = new Image();
 var graceBody = new Image();
 var whisker = new Image();
 var engraving = new Image();
-var clock = new Image();
 var initialBodyScale = 0.32;
 var initialHeadScale = 0.42;
 var initialWhiskerScale = 0.74;
 var initialEngravingScale = 0.5;
 var scale;
 
-var engravingVersion = 3;
-var clockVersion = 1;
+var clocks = [new Image(), new Image(), new Image(), new Image(), new Image()];
+var engravings = [new Image(), new Image(), new Image(), new Image()];
+
+var engravingVersion = 2;
+var clockVersion = 4;
 
 function init() {
     graceHead.src = "../img/grace/grace_h_cajgar.png"
     graceBody.src = "../img/grace/grace_body.png"
     whisker.src = "../img/grace/whisker.png"
-    engraving.src = "../img/grace/engraving5.png"
-    clock.src = "../img/grace/clock5.png"
+
+    clocks[0].src = "../img/grace/clock1.png"
+    clocks[1].src = "../img/grace/clock2.png"
+    clocks[2].src = "../img/grace/clock3.png"
+    clocks[3].src = "../img/grace/clock4.png"
+    clocks[4].src = "../img/grace/clock5.png"
+
+    engravings[0].src = "../img/grace/engraving1.png"
+    engravings[1].src = "../img/grace/engraving2.png"
+    engravings[2].src = "../img/grace/engraving3.png"
+    engravings[3].src = "../img/grace/engraving4.png"
+
     window.requestAnimationFrame(draw);
 }
 
@@ -53,18 +63,18 @@ function draw() {
     graceHead.scaledHeight = graceHead.height * initialHeadScale;
     whisker.scaledWidth = whisker.width * initialWhiskerScale;
     whisker.scaledHeight = whisker.height * initialWhiskerScale;
-    engraving.scaledHeight = engraving.height * initialEngravingScale;
-    engraving.scaledWidth = engraving.width * initialEngravingScale;
+    engravings[0].scaledHeight = engravings[0].height * initialEngravingScale;
+    engravings[0].scaledWidth = engravings[0].width * initialEngravingScale;
 
     // scale
     if(ctx.canvas.width <= ctx.canvas.height) {
-        scale = ctx.canvas.width/clock.width;
+        scale = ctx.canvas.width/clocks[0].width;
     } else {
-        scale = ctx.canvas.height/clock.height;
+        scale = ctx.canvas.height/clocks[0].height;
     }
 
-    clock.scaledWidth = clock.width * scale;
-    clock.scaledHeight = clock.height * scale;
+    clocks[0].scaledWidth = clocks[0].width * scale;
+    clocks[0].scaledHeight = clocks[0].height * scale;
 
     graceBody.scaledWidth = graceBody.scaledWidth * scale;
     graceBody.scaledHeight = graceBody.scaledHeight * scale;
@@ -72,8 +82,8 @@ function draw() {
     graceHead.scaledHeight = graceHead.scaledHeight * scale;
     whisker.scaledWidth = whisker.scaledWidth * scale;
     whisker.scaledHeight = whisker.scaledHeight * scale;
-    engraving.scaledHeight = engraving.scaledHeight * scale;
-    engraving.scaledWidth = engraving.scaledWidth * scale;
+    engravings[0].scaledHeight = engravings[0].scaledHeight * scale;
+    engravings[0].scaledWidth = engravings[0].scaledWidth * scale;
 
     // ---- DRAWING -----------------------
 
@@ -88,18 +98,18 @@ function draw() {
     ctx.translate(ctx.canvas.width/2, ctx.canvas.height/2);
 
     // clock face
-    ctx.drawImage(clock,
-        -clock.scaledWidth/2,
-        -clock.scaledHeight/2,
-        clock.scaledWidth,
-        clock.scaledHeight);
+    ctx.drawImage(clocks[clockVersion],
+        -clocks[0].scaledWidth/2,
+        -clocks[0].scaledHeight/2,
+        clocks[0].scaledWidth,
+        clocks[0].scaledHeight);
 
     // engraving
-    ctx.drawImage(engraving,
-        -engraving.scaledWidth/2,
-        -engraving.scaledHeight/2 - 380*initialEngravingScale*scale,
-        engraving.scaledWidth,
-        engraving.scaledHeight);    
+    ctx.drawImage(engravings[engravingVersion],
+        -engravings[0].scaledWidth/2,
+        -engravings[0].scaledHeight/2 - 380*initialEngravingScale*scale,
+        engravings[0].scaledWidth,
+        engravings[0].scaledHeight);    
 
     // minutes - body
     ctx.save();
@@ -137,24 +147,20 @@ function wheelz(e){
     if(e.shiftKey) {
         if(e.deltaY > 0) {
             engravingVersion--
-            engravingVersion = engravingVersion <= 2 ? 3 : engravingVersion;
+            engravingVersion = engravingVersion <= -1 ? 0 : engravingVersion;
         } else {
             engravingVersion++;
-            engravingVersion = engravingVersion >= 7 ? 6 : engravingVersion;
+            engravingVersion = engravingVersion >= 4 ? 3 : engravingVersion;
         }
-
-        engraving.src = "../img/grace/engraving" + engravingVersion + ".png"
 
     } else {
         if(e.deltaY > 0) {
             clockVersion--
-            clockVersion = clockVersion <= 0 ? 1 : clockVersion;
+            clockVersion = clockVersion <= -1 ? 0 : clockVersion;
         } else {
             clockVersion++;
-            clockVersion = clockVersion >= 6 ? 5 : clockVersion;
+            clockVersion = clockVersion >= 5 ? 4 : clockVersion;
         }
-
-        clock.src = "../img/grace/clock" + clockVersion + ".png"
     }
 }
 
