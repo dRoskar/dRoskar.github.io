@@ -50,6 +50,7 @@ $(window).on('load', function () {
 		}
 		
 		$('#herohero').attr('src', 'img/hero' + hero + '.png');
+		console.log('img/hero' + hero + '.png');
 	});
 
 
