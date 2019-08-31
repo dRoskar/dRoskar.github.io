@@ -39,6 +39,14 @@ $(window).on('load', function () {
 		autoplay: true
 	});
 
+	$('#hero_here').click(function(){
+		if($('#herohero').attr('src') === "img/hero.png") {
+			$('#herohero').attr('src', 'img/hero2.png');
+		} else {
+			$('#herohero').attr('src', 'img/hero.png');
+		}
+	});
+
 
 
 	$('.progress-bar-style').each(function () {
