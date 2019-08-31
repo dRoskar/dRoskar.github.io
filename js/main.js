@@ -39,12 +39,17 @@ $(window).on('load', function () {
 		autoplay: true
 	});
 
+	var hero = 1;
+
 	$('#hero_here').click(function(){
-		if($('#herohero').attr('src') === "img/hero.png") {
-			$('#herohero').attr('src', 'img/hero2.png');
-		} else {
-			$('#herohero').attr('src', 'img/hero.png');
+		hero++;
+		if(hero > 2) {
+			hero = 1
+		} else if(hero < 1) {
+			hero = 2;
 		}
+		
+		$('#herohero').attr('src', 'img/hero' + hero + '.png');
 	});
 
 
