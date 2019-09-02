@@ -39,22 +39,7 @@ $(window).on('load', function () {
 		autoplay: true
 	});
 
-	var hero = 1;
-
-	$('#hero_here').click(function(){
-		hero++;
-		if(hero > 2) {
-			hero = 1
-		} else if(hero < 1) {
-			hero = 2;
-		}
-		
-		$('#herohero').attr('src', 'img/hero' + hero + '.png');
-		console.log('img/hero' + hero + '.png');
-	});
-
-
-
+	
 	$('.progress-bar-style').each(function () {
 		var progress = $(this).data("progress");
 		var prog_width = progress + '%';
