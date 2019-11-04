@@ -84,4 +84,17 @@ function update (time, delta)
 {
     campfire.anims.play('campfire_anim', true);
     controls.update(delta);
+
+    if (this.input.activePointer.isDown) {
+        if (this.origDragPoint) {
+          // move the camera by the amount the mouse has moved since last update
+          this.cameras.main.scrollX +=
+            this.origDragPoint.x - this.input.activePointer.position.x;
+          this.cameras.main.scrollY +=
+            this.origDragPoint.y - this.input.activePointer.position.y;
+        } // set new drag origin to current position
+        this.origDragPoint = this.input.activePointer.position.clone();
+      } else {
+        this.origDragPoint = null;
+      }
 }
