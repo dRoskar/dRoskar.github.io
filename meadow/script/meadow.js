@@ -38,12 +38,21 @@ function preload ()
     this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
-    this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
+    this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 128, frameHeight: 128 });
 }
 
 function create ()
 {
-    this.add.image(550, 300, 'star');
+	this.add.image(550, 300, 'star');
+	
+	this.anims.create({
+        key: 'campfire',
+        frames: this.anims.generateFrameNumbers('campfire', {start: 0, end: 7}),
+        frameRate: 10,
+        repeat: -1
+    })
+
+    this.add.sprite(400, 300, 'campfire');
 }
 
 function update ()
