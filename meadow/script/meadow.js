@@ -29,32 +29,28 @@ var config = {
         update: update
     }
 };
-
+var campfire;
 var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('ground', 'assets/platform.png');
     this.load.image('star', 'assets/star.png');
-    this.load.image('bomb', 'assets/bomb.png');
     this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 128, frameHeight: 128 });
 }
 
 function create ()
 {
-	this.add.image(550, 300, 'star');
-	
 	this.anims.create({
         key: 'campfire',
-        frames: this.anims.generateFrameNumbers('campfire', {start: 0, end: 7}),
-        frameRate: 10,
+        frames: this.anims.generateFrameNumbers('campfire', {start: 0, end: 6}),
+        frameRate: 6,
         repeat: -1
     })
 
-    this.add.sprite(400, 300, 'campfire');
+    campfire = this.add.sprite(400, 300, 'campfire');
 }
 
 function update ()
 {
+    campfire.anims.play('campfire', true);
 }
