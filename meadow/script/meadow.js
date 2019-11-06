@@ -21,8 +21,12 @@
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: window.innerWidth/4,
+    height: window.innerHeight/4,
+    disableContextMenu: true,
+    PixelArt: true,
+    zoom: 4,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     scene: {
         preload: preload,
         create: create,
@@ -35,18 +39,18 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     // load map
-    this.load.image('map_tiles', 'assets/map/grass.png');
-    this.load.tilemapTiledJSON('map', 'assets/map/map1.json');
+    this.load.image('map_tiles', 'assets/map/tileset_1.png');
+    this.load.tilemapTiledJSON('map', 'assets/map/map2.json');
 
     this.load.image('star', 'assets/star.png');
-    this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 32, frameHeight: 32 });
 }
 
 function create ()
 {
     // create map
     var map = this.make.tilemap({ key: 'map' });
-    var tileset = map.addTilesetImage('grass', 'map_tiles');
+    var tileset = map.addTilesetImage('meadow_1', 'map_tiles');
     var layer = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 
     // configure animations
@@ -58,7 +62,7 @@ function create ()
     })
 
     // place objects
-    campfire = this.add.sprite(700, 400, 'campfire');
+    campfire = this.add.sprite(200, 100, 'campfire');
 
     // camera controls
     var cursors = this.input.keyboard.createCursorKeys();
