@@ -35,12 +35,13 @@ var config = {
 };
 var campfire;
 var game = new Phaser.Game(config);
+var touchingYou = false;
 
 function preload ()
 {
     // load map
-    this.load.image('map_tiles', 'assets/map/tileset_1.png');
-    this.load.tilemapTiledJSON('map', 'assets/map/map2.json');
+    this.load.image('map_tiles', 'assets/map/tileset_2.png');
+    this.load.tilemapTiledJSON('map', 'assets/map/map3.json');
 
     this.load.image('star', 'assets/star.png');
     this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 32, frameHeight: 32 });
@@ -50,7 +51,7 @@ function create ()
 {
     // create map
     var map = this.make.tilemap({ key: 'map' });
-    var tileset = map.addTilesetImage('meadow_1', 'map_tiles');
+    var tileset = map.addTilesetImage('tileset_2', 'map_tiles');
     var layer = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 
     // configure animations
@@ -62,7 +63,7 @@ function create ()
     })
 
     // place objects
-    campfire = this.add.sprite(200, 100, 'campfire');
+    campfire = this.add.sprite(191, 339, 'campfire');
 
     // camera controls
     var cursors = this.input.keyboard.createCursorKeys();
@@ -90,6 +91,12 @@ function update (time, delta)
     controls.update(delta);
 
     if (this.input.activePointer.isDown) {
+        if(!touchingYou){
+            console.log("on touch");
+            campfire.x = campfire.x + 0.25;
+            touchingYou = true;
+        }
+
         if (this.origDragPoint) {
           // move the camera by the amount the mouse has moved since last update
           this.cameras.main.scrollX +=
@@ -100,5 +107,6 @@ function update (time, delta)
         this.origDragPoint = this.input.activePointer.position.clone();
       } else {
         this.origDragPoint = null;
+        touchingYou = false;
       }
 }
