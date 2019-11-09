@@ -27,6 +27,13 @@ var config = {
     PixelArt: true,
     zoom: 4,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
     scene: {
         preload: preload,
         create: create,
@@ -39,6 +46,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     // load map
+    this.load.image('spark', 'assets/spark.png');
     this.load.image('map_tiles', 'assets/map/tileset_2_ex.png');
     this.load.tilemapTiledJSON('map', 'assets/map/map3_ex.json');
 
@@ -47,7 +55,6 @@ function preload ()
 
 function create ()
 {
-    console.log("The orientation of the screen is: " + screen.orientation);
     // create map
     const map = this.make.tilemap({ key: 'map' });
     const tileset = map.addTilesetImage('tileset_2_ex', 'map_tiles');
@@ -62,7 +69,30 @@ function create ()
     })
 
     // place objects
-    campfire = this.add.sprite(191, 339, 'campfire');
+    campfire = this.add.sprite(191, 339, 'campfire').setInteractive();
+    
+    var particles = this.add.particles('spark');
+
+    var campfire_emitter = particles.createEmitter({
+        speed: 80,
+        x: 191,
+        y: 339,
+        on: false,
+        bounce: 0.3,
+        bounds: {x: campfire.x - 200, y: campfire.y - 100, width: 400, height: 115},
+        collideLeft: false,
+        collideRight: false,
+        collideTop: false,
+        angle: { min: 220, max: 320 },
+        gravityY: 170,
+        lifespan:  { min: 800, max: 1600 },
+        blendMode: 'ADD'
+    });
+
+    campfire.on('pointerdown', function ()
+    {
+        campfire_emitter.emitParticle(Phaser.Math.Between(1, 3));
+    });
 
     // camera controls
     var cursors = this.input.keyboard.createCursorKeys();
