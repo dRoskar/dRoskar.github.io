@@ -21,11 +21,11 @@
 
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth/4,
-    height: window.innerHeight/4,
+    width: window.innerWidth/2,
+    height: window.innerHeight/2,
     disableContextMenu: true,
     PixelArt: true,
-    zoom: 4,
+    zoom: 2,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     scene: {
         preload: preload,
