@@ -73,9 +73,9 @@ function create ()
         right: cursors.right,
         up: cursors.up,
         down: cursors.down,
-        acceleration: 0.01,
-        drag: 0.0002,
-        maxSpeed: 0.4
+        acceleration: 0.02,
+        drag: 0.0004,
+        maxSpeed: 0.2
     });
 
     // restrict camera movement
