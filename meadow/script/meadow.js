@@ -21,11 +21,11 @@
 
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth/2,
-    height: window.innerHeight/2,
+    width: window.innerWidth/4,
+    height: window.innerHeight/4,
     disableContextMenu: true,
     PixelArt: true,
-    zoom: 2,
+    zoom: 4,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     scene: {
         preload: preload,
@@ -47,6 +47,7 @@ function preload ()
 
 function create ()
 {
+    console.log("The orientation of the screen is: " + screen.orientation);
     // create map
     const map = this.make.tilemap({ key: 'map' });
     const tileset = map.addTilesetImage('tileset_2_ex', 'map_tiles');
