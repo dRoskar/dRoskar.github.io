@@ -35,23 +35,21 @@ var config = {
 };
 var campfire;
 var game = new Phaser.Game(config);
-var touchingYou = false;
 
 function preload ()
 {
     // load map
-    this.load.image('map_tiles', 'assets/map/tileset_2.png');
-    this.load.tilemapTiledJSON('map', 'assets/map/map3.json');
+    this.load.image('map_tiles', 'assets/map/tileset_2_ex.png');
+    this.load.tilemapTiledJSON('map', 'assets/map/map3_ex.json');
 
-    this.load.image('star', 'assets/star.png');
     this.load.spritesheet('campfire', 'assets/fire.png', { frameWidth: 32, frameHeight: 32 });
 }
 
 function create ()
 {
     // create map
-    var map = this.make.tilemap({ key: 'map' });
-    var tileset = map.addTilesetImage('tileset_2', 'map_tiles');
+    const map = this.make.tilemap({ key: 'map' });
+    const tileset = map.addTilesetImage('tileset_2_ex', 'map_tiles');
     var layer = map.createStaticLayer('Tile Layer 1', tileset, 0, 0);
 
     // configure animations
@@ -68,7 +66,7 @@ function create ()
     // camera controls
     var cursors = this.input.keyboard.createCursorKeys();
 
-    var controlConfig = {
+    controls = new Phaser.Cameras.Controls.SmoothedKeyControl({
         camera: this.cameras.main,
         left: cursors.left,
         right: cursors.right,
@@ -77,9 +75,7 @@ function create ()
         acceleration: 0.04,
         drag: 0.0005,
         maxSpeed: 0.7
-    };
-
-    controls = new Phaser.Cameras.Controls.SmoothedKeyControl(controlConfig);
+    });
 
     // restrict camera movement
     this.cameras.main.setBounds(0, 0, layer.width, layer.height);
@@ -91,12 +87,6 @@ function update (time, delta)
     controls.update(delta);
 
     if (this.input.activePointer.isDown) {
-        if(!touchingYou){
-            console.log("on touch");
-            campfire.x = campfire.x + 0.25;
-            touchingYou = true;
-        }
-
         if (this.origDragPoint) {
           // move the camera by the amount the mouse has moved since last update
           this.cameras.main.scrollX +=
@@ -107,6 +97,5 @@ function update (time, delta)
         this.origDragPoint = this.input.activePointer.position.clone();
       } else {
         this.origDragPoint = null;
-        touchingYou = false;
       }
 }
