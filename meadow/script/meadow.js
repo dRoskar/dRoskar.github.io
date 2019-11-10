@@ -40,8 +40,10 @@ var config = {
         update: update
     }
 };
-var campfire;
+
 var game = new Phaser.Game(config);
+var campfire;
+var campfire_emitter;
 
 function preload ()
 {
@@ -73,8 +75,8 @@ function create ()
     
     var particles = this.add.particles('spark');
 
-    var campfire_emitter = particles.createEmitter({
-        speed: 80,
+    campfire_emitter = particles.createEmitter({
+        speed: 170,
         x: 191,
         y: 339,
         on: false,
@@ -84,7 +86,7 @@ function create ()
         collideRight: false,
         collideTop: false,
         angle: { min: 220, max: 320 },
-        gravityY: 170,
+        gravityY: 800,
         lifespan:  { min: 800, max: 1600 },
         blendMode: 'ADD'
     });
@@ -129,4 +131,12 @@ function update (time, delta)
       } else {
         this.origDragPoint = null;
       }
+
+      // control campfire particles
+      campfire_emitter.forEachAlive((particle, emitter) => {
+          const bottom = emitter.bounds.y + emitter.bounds.height;
+          if(particle.y == bottom) {
+              particle.velocityX =  particle.velocityX * 0.2;
+          }
+      }, this);
 }
