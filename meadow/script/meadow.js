@@ -19,14 +19,20 @@
 
 // init();
 
+const ZOOM_LEVEL = 4;
+
 var config = {
     type: Phaser.AUTO,
-    width: window.innerWidth/4,
-    height: window.innerHeight/4,
     disableContextMenu: true,
-    PixelArt: true,
-    zoom: 4,
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    pixelArt: true,
+    // backgroundColor: '#ff00ff',
+    scale: {
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        mode: Phaser.Scale.NONE,
+        width: window.innerWidth/ZOOM_LEVEL,
+        height: window.innerHeight/ZOOM_LEVEL,
+        zoom: ZOOM_LEVEL
+    },
     physics: {
         default: 'arcade',
         arcade: {
@@ -44,6 +50,11 @@ var config = {
 var game = new Phaser.Game(config);
 var campfire;
 var campfire_emitter;
+
+window.addEventListener("resize", () => {
+        game.scale.resize(window.innerWidth/ZOOM_LEVEL, window.innerHeight/ZOOM_LEVEL);
+    },false
+);
 
 function preload ()
 {
