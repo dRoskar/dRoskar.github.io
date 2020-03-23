@@ -10,9 +10,8 @@ $("#myAge").html("\<span\>Age\<\/span\>" + getMyAge());
 
 
 function getMyAge() {
-    var myBirthday = new Date(1991, 11, 24, 12);
+    var myBirthday = new Date(1991, 10, 24, 12);
     var ageDifference = Date.now() - myBirthday.getTime();
     var ageDate = new Date(ageDifference);
-    // return Math.abs(ageDate.getUTCFullYear() - 1970);
-    return 28;
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
