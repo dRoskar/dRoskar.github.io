@@ -26,7 +26,6 @@ class Game extends Phaser.Scene {
 
         // input
         this.input.keyboard.on('keydown-ESC', function(event) {
-            console.log('ESC');
             event.stopPropagation();
             this.scene.start('Title');
         }, this);
@@ -39,12 +38,16 @@ class Game extends Phaser.Scene {
         }
 
         if(this.keys.A.isDown || this.keys.LEFT.isDown) {
-            this.ship.x = this.ship.x - 5;
+            if(this.ship.x >= 40) {
+                this.ship.x = this.ship.x - 5;
+            }
         }
 
         
         if(this.keys.D.isDown || this.keys.RIGHT.isDown) {
-            this.ship.x = this.ship.x + 5;
+            if(this.ship.x <= 760) {
+                this.ship.x = this.ship.x + 5;
+            }
         }
     }
 }
