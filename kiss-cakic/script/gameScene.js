@@ -39,13 +39,13 @@ class Game extends Phaser.Scene {
 
         if(this.keys.A.isDown || this.keys.LEFT.isDown) {
             if(this.ship.x >= 40) {
-                this.ship.x = this.ship.x - 5;
+                this.ship.x = this.ship.x - 4;
             }
         }
 
         if(this.keys.D.isDown || this.keys.RIGHT.isDown) {
             if(this.ship.x <= 760) {
-                this.ship.x = this.ship.x + 5;
+                this.ship.x = this.ship.x + 4;
             }
         }
     }
