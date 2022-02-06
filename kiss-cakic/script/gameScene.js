@@ -19,7 +19,7 @@ class Game extends Phaser.Scene {
         this.add.image(400, 300, 'background');
         this.add.image(400, 300, 'cakic');
 
-        this.ship = this.physics.add.staticImage(400, 450, 'ship');
+        this.ship = this.physics.add.staticImage(400, 575, 'ship');
 
         // input
         this.keys = this.input.keyboard.addKeys('SPACE,W,A,D,LEFT,RIGHT,UP');
@@ -43,7 +43,6 @@ class Game extends Phaser.Scene {
             }
         }
 
-        
         if(this.keys.D.isDown || this.keys.RIGHT.isDown) {
             if(this.ship.x <= 760) {
                 this.ship.x = this.ship.x + 5;
