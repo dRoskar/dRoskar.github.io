@@ -43,7 +43,6 @@ class Game extends Phaser.Scene {
             event.stopPropagation();
             this.scene.start('Title');
         }, this);
-        
     }
 
     update(time, delta) {   
