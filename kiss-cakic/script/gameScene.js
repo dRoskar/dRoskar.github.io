@@ -32,6 +32,9 @@ class Game extends Phaser.Scene {
         this.ray = this.physics.add.image(0, 0, 'ray').setVisible(false);
         this.ray.body.setAllowDrag(false);
 
+        this.physics.add.overlap(this.ship, this.ray, onDeath, null, this);
+        this.physics.add.overlap(this.ship, this.ray, onDeath, null, this);
+
         // ray event
         this.time.addEvent({ delay: 1500, callback: onRay, callbackScope: this, loop: true });
 
@@ -91,5 +94,10 @@ function onRay() {
     this.ray.setVisible(true);
     this.leftEye = !this.leftEye;
 }
+
+function onDeath() {
+    // this.scene.start('End');
+}
+
 
 export default Game;
