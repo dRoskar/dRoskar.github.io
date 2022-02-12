@@ -13,6 +13,9 @@ var config = {
             debug: false
         }
     },
+    audio: {
+        disableWebAudio: true
+    },
     scene: [
         Title,
         Game

@@ -17,10 +17,17 @@ class Game extends Phaser.Scene {
         this.load.image('ray', 'assets/ray.png');
         this.load.spritesheet('bloodLeft', 'assets/bloodLeft.png', { frameWidth: 64, frameHeight: 64 });
         this.load.spritesheet('bloodRight', 'assets/bloodRight.png', { frameWidth: 64, frameHeight: 64 });
+
+        this.load.audio('shot', 'assets/shot.mp3');
+        this.load.audio('ray', 'assets/ray.mp3');
+        this.load.audio('beat', 'assets/beat.mp3');
+        this.load.audio('winrar', 'assets/winrar.mp3');
+        this.load.audio('lose', 'assets/lose.mp3');
     }
 
     create(data) {
         this.dead = false;
+        this.won = false;
         this.shooting = false;
         this.spaceReleased = true;
         this.leftSideRay = true;
@@ -66,8 +73,19 @@ class Game extends Phaser.Scene {
 
         this.input.keyboard.on('keydown-ESC', function(event) {
             event.stopPropagation();
+
+            this.sound.stopAll();
             this.scene.start('Title');
         }, this);
+
+        // sounds
+        this.shotSound = this.sound.add('shot');
+        this.raySound = this.sound.add('ray');
+        this.beatSound = this.sound.add('beat');
+        this.winrarSound = this.sound.add('winrar');
+        this.loseSound = this.sound.add('lose');
+
+        this.beatSound.play({ loop: true });
     }
 
     update(time, delta) {
@@ -80,6 +98,7 @@ class Game extends Phaser.Scene {
         if(!this.dead && (this.keys.SPACE.isDown || this.keys.W.isDown || this.keys.UP.isDown) && !this.shooting && this.spaceReleased) {
             this.shot.setPosition(this.ship.x, this.ship.y - 15);
             this.shot.setVisible(true);
+            this.shotSound.play();
             this.shooting = true;
             this.spaceReleased = false;
         }
@@ -106,7 +125,7 @@ class Game extends Phaser.Scene {
         }
 
         // check win condition
-        if (this.hitCountLeft >= 20 && this.hitCountRight >= 20) {
+        if (!this.won && this.hitCountLeft >= 20 && this.hitCountRight >= 20) {
             win(this);
         }
     }
@@ -122,12 +141,14 @@ function onRay() {
             return;
         }
         this.ray.setPosition(352, 265);
+        this.raySound.play();
     } else {
         if(this.hitCountRight >= 20) {
             this.leftSideRay = !this.leftSideRay;
             return;
         }
         this.ray.setPosition(435, 265);
+        this.raySound.play();
     }
     this.physics.velocityFromAngle(angle, 480, this.ray.body.velocity);
     this.ray.setVisible(true);
@@ -139,11 +160,16 @@ function onDeath() {
     this.ship.body.enable = false;
     this.ship.setVisible(false);
     this.dead = true;
+    this.beatSound.stop();
+    this.loseSound.play();
 }
 
 function win(context) {
     context.win.setVisible(true);
     context.ship.body.enable = false;
+    context.beatSound.stop();
+    context.winrarSound.play();
+    context.won = true;
 }
 
 function onHit(shot, eye) {
