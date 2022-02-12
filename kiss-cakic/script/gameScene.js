@@ -29,19 +29,6 @@ class Game extends Phaser.Scene {
 
         this.add.image(400, 300, 'background');
         this.add.image(400, 300, 'cakic');
-        this.win = this.add.image(400, 300, 'win').setVisible(false);
-        this.lose = this.add.image(400, 300, 'lose').setVisible(false);
-
-        this.ship = this.physics.add.image(400, 575, 'ship');
-        this.ship.body.setSize(60, 30);
-        this.shot = this.physics.add.image(-50, -50, 'shot').setVisible(false);
-        this.shot.body.setSize(8, 20);
-        this.ray = this.physics.add.image(-50, -50, 'ray').setVisible(false);
-        this.ray.body.setSize(8, 20);
-
-        this.ship.body.setAllowDrag(false);
-        this.shot.body.setAllowDrag(false);
-        this.ray.body.setAllowDrag(false);
 
         this.eyes = this.physics.add.staticGroup();
         this.leftEye = this.eyes.create(351, 269, 'bloodLeft', 0).setVisible(false);
@@ -50,6 +37,22 @@ class Game extends Phaser.Scene {
         this.rightEye.left = false;
         this.leftEye.body.setSize(35, 20);
         this.rightEye.body.setSize(35, 20);
+
+        this.shot = this.physics.add.image(-50, -50, 'shot').setVisible(false);
+        this.shot.body.setSize(8, 20);
+
+        this.ship = this.physics.add.image(400, 575, 'ship');
+        this.ship.body.setSize(60, 30);  
+
+        this.ray = this.physics.add.image(-50, -50, 'ray').setVisible(false);
+        this.ray.body.setSize(8, 20);
+
+        this.win = this.add.image(400, 300, 'win').setVisible(false);
+        this.lose = this.add.image(400, 300, 'lose').setVisible(false);
+
+        this.ship.body.setAllowDrag(false);
+        this.shot.body.setAllowDrag(false);
+        this.ray.body.setAllowDrag(false);
 
         // colliders
         this.physics.add.overlap(this.ship, this.ray, onDeath, null, this);
@@ -67,11 +70,13 @@ class Game extends Phaser.Scene {
         }, this);
     }
 
-    update(time, delta) { 
+    update(time, delta) {
+        // allow shooting again if space/w/up has been let go
         if(!this.spaceReleased && !this.shooting && this.keys.SPACE.isUp && this.keys.UP.isUp && this.keys.W.isUp) {
             this.spaceReleased = true;
         }
         
+        // shoot on space/w/up
         if(!this.dead && (this.keys.SPACE.isDown || this.keys.W.isDown || this.keys.UP.isDown) && !this.shooting && this.spaceReleased) {
             this.shot.setPosition(this.ship.x, this.ship.y - 15);
             this.shot.setVisible(true);
@@ -112,8 +117,16 @@ function onRay() {
     var angle = Math.floor(Math.random() * 61) + 60;
     this.ray.setAngle(angle + 90);
     if(this.leftSideRay) {
+        if(this.hitCountLeft >= 20){
+            this.leftSideRay = !this.leftSideRay;
+            return;
+        }
         this.ray.setPosition(352, 265);
     } else {
+        if(this.hitCountRight >= 20) {
+            this.leftSideRay = !this.leftSideRay;
+            return;
+        }
         this.ray.setPosition(435, 265);
     }
     this.physics.velocityFromAngle(angle, 480, this.ray.body.velocity);
