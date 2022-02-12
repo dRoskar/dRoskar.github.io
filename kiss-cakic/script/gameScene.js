@@ -20,7 +20,9 @@ class Game extends Phaser.Scene {
     }
 
     create(data) {
+        this.dead = false;
         this.shooting = false;
+        this.spaceReleased = true;
         this.leftSideRay = true;
         this.hitCountLeft = 0;
         this.hitCountRight = 0;
@@ -65,11 +67,16 @@ class Game extends Phaser.Scene {
         }, this);
     }
 
-    update(time, delta) {   
-        if((this.keys.SPACE.isDown || this.keys.W.isDown || this.keys.UP.isDown) && !this.shooting) {
+    update(time, delta) { 
+        if(!this.spaceReleased && !this.shooting && this.keys.SPACE.isUp && this.keys.UP.isUp && this.keys.W.isUp) {
+            this.spaceReleased = true;
+        }
+        
+        if(!this.dead && (this.keys.SPACE.isDown || this.keys.W.isDown || this.keys.UP.isDown) && !this.shooting && this.spaceReleased) {
             this.shot.setPosition(this.ship.x, this.ship.y - 15);
             this.shot.setVisible(true);
             this.shooting = true;
+            this.spaceReleased = false;
         }
 
         if(this.keys.A.isDown || this.keys.LEFT.isDown) {
@@ -118,6 +125,7 @@ function onDeath() {
     this.lose.setVisible(true);
     this.ship.body.enable = false;
     this.ship.setVisible(false);
+    this.dead = true;
 }
 
 function win(context) {
@@ -126,7 +134,6 @@ function win(context) {
 }
 
 function onHit(shot, eye) {
-
     this.shot.setVisible(false);
     this.shot.setPosition(-50, 50);
     this.shooting = false;
