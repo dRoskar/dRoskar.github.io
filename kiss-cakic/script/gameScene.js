@@ -9,6 +9,8 @@ class Game extends Phaser.Scene {
 
     preload() {
         this.load.image('background', 'assets/bg.jpg');
+        this.load.image('win', 'assets/youwin.png');
+        this.load.image('lose', 'assets/youlose.png');
         this.load.image('cakic', 'assets/cakic.jpg');
         this.load.image('ship', 'assets/ship.png');
         this.load.image('shot', 'assets/shot.png');
@@ -25,6 +27,8 @@ class Game extends Phaser.Scene {
 
         this.add.image(400, 300, 'background');
         this.add.image(400, 300, 'cakic');
+        this.win = this.add.image(400, 300, 'win').setVisible(false);
+        this.lose = this.add.image(400, 300, 'lose').setVisible(false);
 
         this.ship = this.physics.add.image(400, 575, 'ship');
         this.ship.body.setSize(60, 30);
@@ -88,6 +92,11 @@ class Game extends Phaser.Scene {
                 this.shooting = false;
             }
         }
+
+        // check win condition
+        if (this.hitCountLeft >= 20 && this.hitCountRight >= 20) {
+            win(this);
+        }
     }
 }
 
@@ -106,7 +115,14 @@ function onRay() {
 }
 
 function onDeath() {
-    // this.scene.start('End');
+    this.lose.setVisible(true);
+    this.ship.body.enable = false;
+    this.ship.setVisible(false);
+}
+
+function win(context) {
+    context.win.setVisible(true);
+    context.ship.body.enable = false;
 }
 
 function onHit(shot, eye) {

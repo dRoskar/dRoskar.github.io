@@ -1,6 +1,5 @@
 import Title from './titleScene.js';
 import Game from './gameScene.js';
-import End from './endScene.js';
 
 var config = {
     type: Phaser.AUTO,
@@ -16,8 +15,7 @@ var config = {
     },
     scene: [
         Title,
-        Game,
-        End
+        Game
     ]
 };
 
