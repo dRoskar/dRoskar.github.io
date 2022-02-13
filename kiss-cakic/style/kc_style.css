@@ -55,3 +55,36 @@ canvas {
     left: 0%;
     transform: translate(0px, -30px);
 }
+
+#xp_bin {
+	display: block;
+	position: absolute;
+	top: 0%;
+    left: 0%;
+    transform: translate(16px, 25px);
+}
+
+#xp_media_p {
+	display: block;
+	position: absolute;
+	top: 0%;
+    left: 0%;
+    transform: translate(14px, 110px);
+}
+
+#xp_winrar {
+	display: block;
+	position: absolute;
+	top: 0%;
+    left: 0%;
+    transform: translate(11px, 195px);
+}
+
+
+#xp_kc {
+	display: block;
+	position: absolute;
+	top: 0%;
+    left: 0%;
+    transform: translate(14px, 280px);
+}
