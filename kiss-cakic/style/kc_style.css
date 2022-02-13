@@ -20,7 +20,7 @@ canvas {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-400px, -380px);
 }
 
 #xp_win {
@@ -28,5 +28,30 @@ canvas {
 	position: absolute;
 	top: 50%;
     left: 50%;
-    transform: translate(-404px, -330px);
+    transform: translate(-404px, -410px);
+}
+
+#xp_bar_filler {
+	display: block;
+	position: absolute;
+	top: 100%;
+    left: 50%;
+    /* transform: translate(528px, -30px); */
+	transform: matrix(200, 0, 0, 1, 0, -30);
+}
+
+#xp_bar_tool {
+	display: block;
+	position: absolute;
+	top: 100%;
+    left: 100%;
+    transform: translate(-137px, -30px);
+}
+
+#xp_bar_start {
+	display: block;
+	position: absolute;
+	top: 100%;
+    left: 0%;
+    transform: translate(0px, -30px);
 }
