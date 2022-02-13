@@ -19,5 +19,29 @@
 	<img id="xp_media_p" src="assets/site/xp_media_p.png" />
 	<img id="xp_winrar" src="assets/site/xp_winrar.png" />
 	<img id="xp_kc" src="assets/site/xp_kc.png" />
+
+	<div class="wh">
+		<video id="wh">
+			<source src="assets/site/wh.mp4" type="video/mp4">
+		</video>
+	</div>
+
+	<button id="time_machine" onclick="travel()">Take me back to 2009</button>
+
+	<script>
+		var video = document.getElementById("wh");
+		var btn = document.getElementById("time_machine");
+
+		video.onended = function() {
+			console.log("vid ended");
+			alert("The video has ended");
+		};
+		
+		function travel() {
+			video.play();
+			btn.remove();
+		}
+	</script>
+	
 </body>
 </html>
