@@ -2,32 +2,31 @@ html, body {
     width:  100%;
     height: 100%;
     margin: 0px;
-    overflow: hidden;
-  }
-
-@keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-		        transform: rotate(0deg);
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-		        transform: rotate(180deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-		        transform: rotate(360deg);
-	}
+	overflow: hidden;
 }
 
-@-webkit-keyframes loader {
-	0% {
-		-webkit-transform: rotate(0deg);
-	}
-	50% {
-		-webkit-transform: rotate(180deg);
-	}
-	100% {
-		-webkit-transform: rotate(360deg);
-	}
+.bg {
+	background-image: url("../assets/site/xp_bg.jpg");
+	height: 100%;
+	width: 100%;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: 100% 100%;
+}
+
+canvas {
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#xp_win {
+	display: block;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-404px, -330px);
 }

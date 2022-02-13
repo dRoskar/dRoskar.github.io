@@ -150,7 +150,7 @@ function onRay() {
         this.ray.setPosition(435, 265);
         this.raySound.play();
     }
-    this.physics.velocityFromAngle(angle, 480, this.ray.body.velocity);
+    this.physics.velocityFromAngle(angle, 520, this.ray.body.velocity);
     this.ray.setVisible(true);
     this.leftSideRay = !this.leftSideRay;
 }
