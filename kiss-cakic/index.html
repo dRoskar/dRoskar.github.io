@@ -6,6 +6,7 @@
     <title>Kill Čakić</title>
 	<link rel="stylesheet" href="style/kc_style.css" />
 	<script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -15,31 +16,99 @@
 	<img id="xp_bar_filler" src="assets/site/xp_bar_filler.png" />
 	<img id="xp_bar_tool" src="assets/site/xp_bar_tool.png" />
 	<img id="xp_bar_start" src="assets/site/xp_bar_start.png" />
-	<img id="xp_bin" src="assets/site/xp_bin.png" />
-	<img id="xp_media_p" src="assets/site/xp_media_p.png" />
-	<img id="xp_winrar" src="assets/site/xp_winrar.png" />
-	<img id="xp_kc" src="assets/site/xp_kc.png" />
+	<img id="xp_bin" class="icon" src="assets/site/xp_bin.png" />
+	<img id="xp_media_p" class="icon" src="assets/site/xp_media_p.png" />
+	<img id="xp_winrar" class="icon" src="assets/site/xp_winrar.png" />
+	<img id="xp_kc" class="icon" src="assets/site/xp_kc.png" />
+
+	<img id="xp_welcome" src="assets/site/xp_welcome.png"/>
+
+	<div id="grey">
+	</div>
+
+	<div class="boot">
+		<img id="terminal" src="assets/site/terminal.gif" alt="" />
+		<img id="xp_loading" class="xp_boot" src="assets/site/xp_loading.gif" alt="" />
+		<img id="xp_cp" class="xp_boot" src="assets/site/xp_cp.png" alt="" />
+		<img id="xp_ms_label" class="xp_boot" src="assets/site/xp_ms_label.png" alt="" />
+	</div>
 
 	<div class="wh">
-		<video id="wh">
+		<video id="wh_video">
 			<source src="assets/site/wh.mp4" type="video/mp4">
 		</video>
 	</div>
 
-	<button id="time_machine" onclick="travel()">Take me back to 2009</button>
+	<button id="time_machine_button" onclick="travel()">Take me back to 2009</button>
 
 	<script>
-		var video = document.getElementById("wh");
-		var btn = document.getElementById("time_machine");
+		$(".xp_boot").hide();
+		$("#xp_win").hide();
+		$(".icon").hide();
 
-		video.onended = function() {
-			console.log("vid ended");
-			alert("The video has ended");
-		};
+		var audioElement = document.createElement("audio");
+    	audioElement.setAttribute("src", "assets/site/xp_startup.mp3");
 		
 		function travel() {
-			video.play();
-			btn.remove();
+			$("#wh_video").trigger("play");
+			$("#time_machine_button").remove();
+		}
+
+		$("#wh_video").on("ended", function() {
+			$("#wh_video").parent().remove();
+			setTimeout(function(){
+				showXpBoot();
+			}, 4000);
+		});
+
+		function showXpBoot() {
+			$("#terminal").hide();
+			setTimeout(function() {
+				$(".xp_boot").fadeIn();
+				setTimeout(function() {
+					showWelcomeScreen();
+				}, 6000);
+			}, 1000);
+		}
+
+		function showWelcomeScreen() {
+			$(".xp_boot").remove();
+			setTimeout(function() {
+				$("div.boot").remove();
+				setTimeout(function() {
+					$("#grey").css("background-color", "rgb(0, 0, 0)");
+					setTimeout(function() {
+						$("#grey").remove();
+						setTimeout(function() {
+							audioElement.play();
+							setTimeout(function() {
+								loadDesktop();
+							}, 3800);
+						}, 1300);
+					}, 2100);
+				}, 1400);
+			}, 900);
+		}
+
+		function loadDesktop() {
+			$("#xp_welcome").remove();
+
+			setTimeout(function() {
+				$(".icon").show();
+				setTimeout(function() {
+					$(".icon").hide();
+					setTimeout(function() {
+						$(".icon").show();
+					}, 200);
+				}, 600);
+			}, 900);
+
+			setTimeout(function() {
+				$("#xp_win").show();
+				setTimeout(function() {
+					$("canvas").show();
+				}, 800);
+			}, 400);
 		}
 	</script>
 	
