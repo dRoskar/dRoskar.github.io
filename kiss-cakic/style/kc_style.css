@@ -1,0 +1,268 @@
+html, body {
+    width:  100%;
+    height: 100%;
+    margin: 0;
+	overflow: hidden;
+}
+
+.mobile_detected {
+	position:absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background-color: aliceblue;
+	width: 100%;
+	height: 100%;
+	padding: 32px;
+	box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+	.mobile_detected {
+		display: none;
+	}
+}
+
+.bg {
+	background-image: url("../assets/site/xp_bg.jpg");
+	height: 100%;
+	width: 100%;
+	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+}
+
+canvas {
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-400px, -380px);
+}
+
+img {
+	display: block;
+	position: absolute;
+}
+
+#xp_win {
+	top: 50%;
+    left: 50%;
+	transform: translate(-404px, -410px);
+}
+
+#xp_bar_filler {
+	width: 100%;
+	height: 30px;
+	top: 100%;
+    transform: translate(0px, -30px);
+}
+
+#xp_bar_tool {
+	top: 100%;
+    left: 100%;
+    transform: translate(-137px, -30px);
+}
+
+#xp_bar_start {
+	top: 100%;
+    left: 0;
+    transform: translate(0px, -30px);
+}
+
+#xp_bin {
+	top: 0;
+    left: 0;
+    transform: translate(16px, 25px);
+}
+
+#xp_media_p {
+	top: 0;
+    left: 0;
+    transform: translate(14px, 110px);
+}
+
+#xp_winrar {
+	top: 0;
+    left: 0;
+    transform: translate(11px, 195px);
+}
+
+#xp_kc {
+	top: 0;
+    left: 0;
+    transform: translate(14px, 280px);
+}
+
+#xp_welcome {
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+    left: 0;
+}
+
+#terminal {
+	top: 0;
+    left: 0;
+	transform: translate(30px, 60px);
+}
+
+#xp_cp {
+	top: 100%;
+    left: 0;
+	transform: translate(40px, -90px);
+}
+
+#xp_ms_label {
+	top: 100%;
+    left: 100%;
+	transform: translate(-230px, -98px);
+}
+
+#xp_loading {
+	top: 50%;
+    left: 50%;
+	transform: translate(-50%, -55%);
+}
+
+.boot {
+	position: fixed;
+	top: 0;
+    left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	background: rgb(0, 0, 0);
+}
+
+#grey {
+	position: fixed;
+	top: 0;
+    left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	background: rgb(22, 22, 22);
+}
+
+.wh {
+	position: fixed;
+	top: 0;
+    left: 0;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+/* From cssbuttons.io */
+#time_machine_button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -200%);
+	cursor: pointer;
+
+	--glow-color: rgb(217, 176, 255);
+	--glow-spread-color: rgba(191, 123, 255, 0.781);
+	--enhanced-glow-color: rgb(231, 206, 255);
+	--btn-color: rgb(100, 61, 136);
+	border: .25em solid var(--glow-color);
+	padding: 1em 3em;
+	color: var(--glow-color);
+	font-size: 15px;
+	font-weight: bold;
+	background-color: var(--btn-color);
+	border-radius: 2em;
+	outline: none;
+	box-shadow: 0 0 1em .25em var(--glow-color),
+			0 0 4em 1em var(--glow-spread-color),
+			inset 0 0 .75em .25em var(--glow-color);
+	text-shadow: 0 0 .5em var(--glow-color);
+	transition: all 0.3s;
+}
+
+#time_machine_button::after {
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	top: 120%;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: var(--glow-spread-color);
+	filter: blur(2em);
+	opacity: .7;
+	transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+#time_machine_button:hover {
+	color: var(--btn-color);
+	background-color: var(--glow-color);
+	box-shadow: 0 0 1em .25em var(--glow-color),
+			0 0 4em 2em var(--glow-spread-color),
+			inset 0 0 .75em .25em var(--glow-color);
+}
+
+#time_machine_button:active {
+	box-shadow: 0 0 0.6em .25em var(--glow-color),
+			0 0 2.5em 2em var(--glow-spread-color),
+			inset 0 0 .5em .25em var(--glow-color);
+}
+
+/* Preloder */
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: rgb(0, 0, 0);
+}
+
+.loader {
+	width: 48px;
+	height: 48px;
+	top: calc(50% - 110px);
+	left: 50%;
+	margin-left: -24px;
+	border: 3px dotted rgb(217, 176, 255);
+	border-style: solid solid dotted dotted;
+	border-radius: 50%;
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+	animation: rotation 2s linear infinite;
+  }
+  .loader::after {
+	content: '';  
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border: 3px dotted #FFF;
+	border-style: solid solid dotted;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	animation: rotationBack 1s linear infinite;
+	transform-origin: center center;
+  }
+	  
+  @keyframes rotation {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  } 
+  @keyframes rotationBack {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(-360deg);
+	}
+  } 

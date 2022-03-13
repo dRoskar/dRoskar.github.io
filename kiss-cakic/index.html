@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Kill Čakić</title>
+	<link rel="stylesheet" href="style/kc_style.css" />
+	<script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<script type="module" src="script/kc.js"></script>
+
+	<div class="mobile_detected">Sorry, you'll need to visit this site on your PC to experience it.</div>
+
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<div class="bg"></div>
+	<img id="xp_win" src="assets/site/xp_win.png" />
+	<img id="xp_bar_filler" src="assets/site/xp_bar_filler.png" />
+	<img id="xp_bar_tool" src="assets/site/xp_bar_tool.png" />
+	<img id="xp_bar_start" src="assets/site/xp_bar_start.png" />
+	<img id="xp_bin" class="icon" src="assets/site/xp_bin.png" />
+	<img id="xp_media_p" class="icon" src="assets/site/xp_media_p.png" />
+	<img id="xp_winrar" class="icon" src="assets/site/xp_winrar.png" />
+	<img id="xp_kc" class="icon" src="assets/site/xp_kc.png" />
+
+	<img id="xp_welcome" src="assets/site/xp_welcome.png"/>
+
+	<div id="grey">
+	</div>
+
+	<div class="boot">
+		<img id="terminal" src="assets/site/terminal.gif" alt="" />
+		<img id="xp_loading" class="xp_boot" src="assets/site/xp_loading.gif" alt="" />
+		<img id="xp_cp" class="xp_boot" src="assets/site/xp_cp.png" alt="" />
+		<img id="xp_ms_label" class="xp_boot" src="assets/site/xp_ms_label.png" alt="" />
+	</div>
+
+	<div class="wh">
+		<video id="wh_video">
+			<source src="assets/site/wh.mp4" type="video/mp4">
+		</video>
+	</div>
+
+	<button id="time_machine_button" onclick="travel()">Take me back to 2009</button>
+
+	<script>
+		$( document ).ready(function() {
+			$(".loader").fadeOut();
+			$("#preloder").delay(400).fadeOut("slow");
+		});
+
+		$(".xp_boot").hide();
+		$("#xp_win").hide();
+		$(".icon").hide();
+
+		var xpStartupAudio = document.createElement("audio");
+    	xpStartupAudio.setAttribute("src", "assets/site/xp_startup.mp3");
+
+		var lightAudio = document.createElement("audio");
+    	lightAudio.setAttribute("src", "assets/site/flicker.mp3");
+		
+		function travel() {
+			$("#wh_video").trigger("play");
+			lightAudio.play();
+			setTimeout(function() {
+				$("#time_machine_button").hide();
+				setTimeout(function() {
+					$("#time_machine_button").show();
+					setTimeout(function() {
+						$("#time_machine_button").hide();
+						setTimeout(function() {
+							$("#time_machine_button").show();
+							setTimeout(function() {
+								$("#time_machine_button").hide();
+								setTimeout(function() {
+									$("#time_machine_button").show();
+									setTimeout(function() {
+										$("#time_machine_button").hide();
+										setTimeout(function() {
+											$("#time_machine_button").show();
+											setTimeout(function() {
+												$("#time_machine_button").hide();
+											}, 38);
+										}, 62);
+									}, 38);
+								}, 12);
+							}, 28);
+						}, 40);
+					}, 59);
+				}, 79);
+			}, 215);
+		}
+
+		$("#wh_video").on("ended", function() {
+			$("#wh_video").parent().remove();
+			setTimeout(function(){
+				showXpBoot();
+			}, 4000);
+		});
+
+		function showXpBoot() {
+			$("#terminal").hide();
+			setTimeout(function() {
+				$(".xp_boot").fadeIn();
+				setTimeout(function() {
+					showWelcomeScreen();
+				}, 6000);
+			}, 1000);
+		}
+
+		function showWelcomeScreen() {
+			$(".xp_boot").remove();
+			setTimeout(function() {
+				$("div.boot").remove();
+				setTimeout(function() {
+					$("#grey").css("background-color", "rgb(0, 0, 0)");
+					setTimeout(function() {
+						$("#grey").remove();
+						setTimeout(function() {
+							xpStartupAudio.play();
+							setTimeout(function() {
+								loadDesktop();
+							}, 3800);
+						}, 1300);
+					}, 2100);
+				}, 1400);
+			}, 900);
+		}
+
+		function loadDesktop() {
+			$("#xp_welcome").remove();
+
+			setTimeout(function() {
+				$(".icon").show();
+				setTimeout(function() {
+					$(".icon").hide();
+					setTimeout(function() {
+						$(".icon").show();
+					}, 200);
+				}, 600);
+			}, 900);
+
+			setTimeout(function() {
+				$("#xp_win").show();
+				setTimeout(function() {
+					$("canvas").show();
+				}, 800);
+			}, 400);
+		}
+	</script>
+	
+</body>
+</html>
