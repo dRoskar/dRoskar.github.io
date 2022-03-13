@@ -7,19 +7,24 @@ html, body {
 
 .mobile_detected {
 	position:absolute;
+	display: none;
 	top: 0;
 	left: 0;
 	z-index: 2;
-	background-color: aliceblue;
+	background-color: black;
+	color: rgb(217, 176, 255);
 	width: 100%;
 	height: 100%;
-	padding: 32px;
+	padding: 80px 32px;
 	box-sizing: border-box;
+	text-align: center;
+	font-size: large;
+	font-weight: bold;
 }
 
-@media screen and (min-width: 768px) {
+@media (max-width: 768px) {
 	.mobile_detected {
-		display: none;
+		display: block;
 	}
 }
 
