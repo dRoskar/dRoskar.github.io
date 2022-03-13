@@ -83,10 +83,9 @@
 										setTimeout(function() {
 											$("#time_machine_button").show();
 											setTimeout(function() {
-												$("#time_machine_button").hide();
+												$("#time_machine_button").remove();
 												setTimeout(function() {
 													$("#wh_video").trigger("play");
-													$(".time_machine").remove();
 												}, 200);
 											}, 38);
 										}, 62);
