@@ -65,7 +65,6 @@
     	lightAudio.setAttribute("src", "assets/site/flicker.mp3");
 		
 		function travel() {
-			$("#wh_video").trigger("play");
 			lightAudio.play();
 			setTimeout(function() {
 				$("#time_machine_button").hide();
@@ -85,6 +84,9 @@
 											$("#time_machine_button").show();
 											setTimeout(function() {
 												$("#time_machine_button").hide();
+												setTimeout(function() {
+													$("#wh_video").trigger("play");
+												}, 200);
 											}, 38);
 										}, 62);
 									}, 38);
