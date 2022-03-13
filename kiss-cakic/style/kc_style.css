@@ -156,7 +156,7 @@ img {
 #time_machine_button {
 	position: absolute;
 	top: 50%;
-    left: 50%;
+	left: 50%;
 	transform: translate(-50%, -200%);
 	cursor: pointer;
 
@@ -173,13 +173,13 @@ img {
 	border-radius: 2em;
 	outline: none;
 	box-shadow: 0 0 1em .25em var(--glow-color),
-		   0 0 4em 1em var(--glow-spread-color),
-		   inset 0 0 .75em .25em var(--glow-color);
+			0 0 4em 1em var(--glow-spread-color),
+			inset 0 0 .75em .25em var(--glow-color);
 	text-shadow: 0 0 .5em var(--glow-color);
 	transition: all 0.3s;
-   }
-   
-   #time_machine_button::after {
+}
+
+#time_machine_button::after {
 	pointer-events: none;
 	content: "";
 	position: absolute;
@@ -191,18 +191,78 @@ img {
 	filter: blur(2em);
 	opacity: .7;
 	transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-   }
-   
-   #time_machine_button:hover {
+}
+
+#time_machine_button:hover {
 	color: var(--btn-color);
 	background-color: var(--glow-color);
 	box-shadow: 0 0 1em .25em var(--glow-color),
-		   0 0 4em 2em var(--glow-spread-color),
-		   inset 0 0 .75em .25em var(--glow-color);
-   }
-   
-   #time_machine_button:active {
+			0 0 4em 2em var(--glow-spread-color),
+			inset 0 0 .75em .25em var(--glow-color);
+}
+
+#time_machine_button:active {
 	box-shadow: 0 0 0.6em .25em var(--glow-color),
-		   0 0 2.5em 2em var(--glow-spread-color),
-		   inset 0 0 .5em .25em var(--glow-color);
-   }
+			0 0 2.5em 2em var(--glow-spread-color),
+			inset 0 0 .5em .25em var(--glow-color);
+}
+
+/* Preloder */
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: rgb(0, 0, 0);
+}
+
+.loader {
+	width: 48px;
+	height: 48px;
+	top: calc(50% - 110px);
+	left: 50%;
+	margin-left: -24px;
+	border: 3px dotted rgb(217, 176, 255);
+	border-style: solid solid dotted dotted;
+	border-radius: 50%;
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+	animation: rotation 2s linear infinite;
+  }
+  .loader::after {
+	content: '';  
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	border: 3px dotted #FFF;
+	border-style: solid solid dotted;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	animation: rotationBack 1s linear infinite;
+	transform-origin: center center;
+  }
+	  
+  @keyframes rotation {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+  } 
+  @keyframes rotationBack {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(-360deg);
+	}
+  } 

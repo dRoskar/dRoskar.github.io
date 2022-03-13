@@ -12,7 +12,11 @@
 <body>
 	<script type="module" src="script/kc.js"></script>
 
-	<div class="mobile_detected">Sorry, you'll need to visit this site on your PC to experience this.</div>
+	<div class="mobile_detected">Sorry, you'll need to visit this site on your PC to experience it.</div>
+
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
 	<div class="bg"></div>
 	<img id="xp_win" src="assets/site/xp_win.png" />
@@ -45,6 +49,11 @@
 	<button id="time_machine_button" onclick="travel()">Take me back to 2009</button>
 
 	<script>
+		$( document ).ready(function() {
+			$(".loader").fadeOut();
+			$("#preloder").delay(400).fadeOut("slow");
+		});
+
 		$(".xp_boot").hide();
 		$("#xp_win").hide();
 		$(".icon").hide();
