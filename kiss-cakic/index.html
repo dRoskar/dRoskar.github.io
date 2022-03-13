@@ -48,7 +48,7 @@
 	<button id="time_machine_button" onclick="travel()">Take me back to 2009</button>
 
 	<script>
-		$( document ).ready(function() {
+		$(window).on("load", function () {
 			$(".loader").fadeOut();
 			$("#preloder").delay(400).fadeOut("slow");
 		});
