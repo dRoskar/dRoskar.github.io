@@ -41,7 +41,7 @@
 
 	<div class="wh">
 		<video id="wh_video">
-			<source src="assets/site/wh.mp4" type="video/mp4">
+			<source src="assets/site/wormhole.mp4" type="video/mp4">
 		</video>
 	</div>
 
@@ -85,6 +85,7 @@
 												$("#time_machine_button").hide();
 												setTimeout(function() {
 													$("#wh_video").trigger("play");
+													$(".time_machine").remove();
 												}, 200);
 											}, 38);
 										}, 62);
