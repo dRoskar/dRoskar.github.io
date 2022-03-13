@@ -20,6 +20,7 @@ html, body {
 	text-align: center;
 	font-size: large;
 	font-weight: bold;
+	z-index: 101;
 }
 
 @media (max-width: 768px) {
@@ -219,7 +220,7 @@ img {
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: 999999;
+	z-index: 100;
 	background: rgb(0, 0, 0);
 }
 
