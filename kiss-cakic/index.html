@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<script type="module" src="script/kc.js"></script>
+	<!-- <script type="module" src="script/kc.js"></script> -->
 
 	<div class="mobile_detected">Sorry, you'll need to visit this site on your PC to experience it.</div>
 
@@ -135,7 +135,13 @@
 		}
 
 		function loadDesktop() {
+			let script = document.createElement("script");
+			script.setAttribute("type", "module");
+			script.setAttribute("src", "script/kc.js");
+			document.body.appendChild(script);
+			
 			$("#xp_welcome").remove();
+
 
 			setTimeout(function() {
 				$(".icon").show();
