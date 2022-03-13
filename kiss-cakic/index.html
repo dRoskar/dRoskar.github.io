@@ -49,12 +49,42 @@
 		$("#xp_win").hide();
 		$(".icon").hide();
 
-		var audioElement = document.createElement("audio");
-    	audioElement.setAttribute("src", "assets/site/xp_startup.mp3");
+		var xpStartupAudio = document.createElement("audio");
+    	xpStartupAudio.setAttribute("src", "assets/site/xp_startup.mp3");
+
+		var lightAudio = document.createElement("audio");
+    	lightAudio.setAttribute("src", "assets/site/flicker.mp3");
 		
 		function travel() {
 			$("#wh_video").trigger("play");
-			$("#time_machine_button").remove();
+			lightAudio.play();
+			setTimeout(function() {
+				$("#time_machine_button").hide();
+				setTimeout(function() {
+					$("#time_machine_button").show();
+					setTimeout(function() {
+						$("#time_machine_button").hide();
+						setTimeout(function() {
+							$("#time_machine_button").show();
+							setTimeout(function() {
+								$("#time_machine_button").hide();
+								setTimeout(function() {
+									$("#time_machine_button").show();
+									setTimeout(function() {
+										$("#time_machine_button").hide();
+										setTimeout(function() {
+											$("#time_machine_button").show();
+											setTimeout(function() {
+												$("#time_machine_button").hide();
+											}, 38);
+										}, 62);
+									}, 38);
+								}, 12);
+							}, 28);
+						}, 40);
+					}, 59);
+				}, 79);
+			}, 215);
 		}
 
 		$("#wh_video").on("ended", function() {
@@ -83,7 +113,7 @@
 					setTimeout(function() {
 						$("#grey").remove();
 						setTimeout(function() {
-							audioElement.play();
+							xpStartupAudio.play();
 							setTimeout(function() {
 								loadDesktop();
 							}, 3800);
