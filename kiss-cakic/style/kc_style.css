@@ -156,6 +156,16 @@ img {
     left: 0;
 	min-width: 100%;
 	min-height: 100%;
+	text-align: center;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(calc((100% - 100vw) / 2), calc((100% - 100vh) / 2));
 }
 
 /* From cssbuttons.io */
