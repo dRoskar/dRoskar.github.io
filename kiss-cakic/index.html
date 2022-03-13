@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="wh">
-		<video id="wh_video">
+		<video id="wh_video" preload="auto">
 			<source src="assets/site/wormhole.mp4" type="video/mp4">
 		</video>
 	</div>
@@ -48,10 +48,31 @@
 	<button id="time_machine_button" onclick="travel()">Take me back to 2009</button>
 
 	<script>
+		var windowReady = false;
+		var videoReady = false;
+
+		function canIStart() {
+			if(windowReady && videoReady) {
+				$(".loader").fadeOut();
+				$("#preloder").delay(400).fadeOut("slow");
+			}
+		}
+
 		$(window).on("load", function () {
-			$(".loader").fadeOut();
-			$("#preloder").delay(400).fadeOut("slow");
+			windowReady = true;
+			canIStart();
 		});
+
+		let video = document.getElementById("wh_video");
+		video.oncanplaythrough = (event) => {
+			videoReady = true;
+			canIStart();
+		};
+		// if video was already ready
+		if (video.readyState > 3) {
+			videoReady = true;
+			canIStart();
+		}
 
 		$("#terminal").hide();
 		$(".xp_boot").hide();
