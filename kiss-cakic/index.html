@@ -53,6 +53,7 @@
 			$("#preloder").delay(400).fadeOut("slow");
 		});
 
+		$("#terminal").hide();
 		$(".xp_boot").hide();
 		$("#xp_win").hide();
 		$(".icon").hide();
@@ -99,6 +100,7 @@
 		}
 
 		$("#wh_video").on("ended", function() {
+			$("#terminal").show();
 			$("#wh_video").parent().remove();
 			setTimeout(function(){
 				showXpBoot();
