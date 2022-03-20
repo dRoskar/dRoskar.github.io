@@ -42,9 +42,9 @@ canvas {
     display: none;
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
-    transform: translate(-400px, -380px);
+    transform: translate(-400px, -300px);
 }
 
 img {
@@ -53,9 +53,10 @@ img {
 }
 
 #xp_win {
-	top: 50%;
+	top: 45%;
     left: 50%;
-	transform: translate(-404px, -410px);
+	transform: translate(-404px, -330px);
+	z-index: 1;
 }
 
 #xp_bar_filler {
