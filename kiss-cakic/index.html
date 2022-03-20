@@ -77,6 +77,9 @@
 		$("#terminal").hide();
 		$(".xp_boot").hide();
 		$("#xp_win").hide();
+		$("#xp_bar_filler").hide();
+		$("#xp_bar_tool").hide();
+		$("#xp_bar_start").hide();
 		$(".icon").hide();
 
 		var xpStartupAudio = document.createElement("audio");
@@ -163,7 +166,9 @@
 			document.body.appendChild(script);
 			
 			$("#xp_welcome").remove();
-
+			$("#xp_bar_filler").show();
+			$("#xp_bar_tool").show();
+			$("#xp_bar_start").show();
 
 			setTimeout(function() {
 				$(".icon").show();

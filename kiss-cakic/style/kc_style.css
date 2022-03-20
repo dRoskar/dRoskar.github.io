@@ -45,6 +45,7 @@ canvas {
     top: 45%;
     left: 50%;
     transform: translate(-400px, -300px);
+	z-index: 3;
 }
 
 img {
@@ -64,18 +65,21 @@ img {
 	height: 30px;
 	top: 100%;
     transform: translate(0px, -30px);
+	z-index: 4;
 }
 
 #xp_bar_tool {
 	top: 100%;
     left: 100%;
     transform: translate(-137px, -30px);
+	z-index: 4;
 }
 
 #xp_bar_start {
 	top: 100%;
     left: 0;
     transform: translate(0px, -30px);
+	z-index: 4;
 }
 
 #xp_bin {
