@@ -27,7 +27,8 @@
 	<img id="xp_winrar" class="icon" src="assets/site/xp_winrar.png" />
 	<img id="xp_kc" class="icon" src="assets/site/xp_kc.png" />
 
-	<img id="xp_welcome" src="assets/site/xp_welcome.png"/>
+	<img id="xp_welcome_bg" src="assets/site/xp_welcome_bg.png"/>
+	<img id="xp_welcome_label" src="assets/site/xp_welcome_label.png"/>
 
 	<div id="grey">
 	</div>
@@ -165,7 +166,8 @@
 			script.setAttribute("src", "script/kc.js");
 			document.body.appendChild(script);
 			
-			$("#xp_welcome").remove();
+			$("#xp_welcome_bg").remove();
+			$("#xp_welcome_label").remove();
 			$("#xp_bar_filler").show();
 			$("#xp_bar_tool").show();
 			$("#xp_bar_start").show();
